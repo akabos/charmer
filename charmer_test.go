@@ -14,6 +14,7 @@ import (
 func ExampleEnv() {
 	var args struct {
 		Example string `viper:"example"`
+		Default int    `viper:"default" default:"100500"`
 	}
 
 	_ = os.Setenv("EXAMPLE", "example")
@@ -26,9 +27,11 @@ func ExampleEnv() {
 	}
 
 	fmt.Println(args.Example)
+	fmt.Println(args.Default)
 
 	// Output:
 	// example
+	// 100500
 }
 
 func ExampleFlag() {

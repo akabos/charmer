@@ -41,6 +41,9 @@ func Charm(x interface{}, cfg *viper.Viper, cmd *cobra.Command) error {
 			}
 			_ = cfg.BindPFlag(v, flag)
 		}
+		if d, ok := tf.Tag.Lookup("default"); ok {
+			cfg.SetDefault(v, d)
+		}
 		switch tf.Type.Kind() {
 		case reflect.String:
 			y.Field(i).SetString(cfg.GetString(v))
